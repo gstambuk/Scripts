@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Babylonian Time and Date</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      text-align: center; 
+      padding: 2rem; 
+    }
+    .time-container { 
+      margin-top: 20px; 
+      font-size: 2rem; 
+    }
+    .explanation { 
+      margin-top: 40px; 
+      font-size: 1.1rem; 
+      line-height: 1.6; 
+      max-width: 600px; 
+      margin-left: auto; 
+      margin-right: auto; 
+    }
+  </style>
+</head>
+<body>
+  <h1>Babylonian Date and Time</h1>
+  <div class="time-container">
+    Babylonian Date: <span id="babylonianDate"></span>
+  </div>
+
+  <div class="explanation">
+    <h2>Understanding Babylonian Time</h2>
+    <p>The Babylonian calendar was a lunisolar system based on the cycles of the Moon. It had 12 months of 29 or 30 days, with an occasional 13th month added to synchronize with the solar year.</p>
+  </div>
+
+  <script>
+    function calculateBabylonianDate() {
+      const newMoons = [
+        new Date('2025-01-29T12:37:00Z'), // Start of Šabātu
+        new Date('2025-03-01T01:19:00Z')  // Start of Addaru
+      ];
+      const monthNames = ["Nisannu", "Ayyāru", "Simānu", "Dûzu", "Abu", "Ulūlu", "Tashrītu", "Araḫsamna", "Kislimu", "Ṭebētu", "Šabātu", "Addaru"];
+      
+      const now = new Date();
+      let babylonianMonth = "";
+      let babylonianDay = 0;
+      
+      for (let i = newMoons.length - 1; i >= 0; i--) {
+        if (now >= newMoons[i]) {
+          babylonianMonth = monthNames[10 + i]; // Šabātu or Addaru
+          babylonianDay = Math.floor((now - newMoons[i]) / (1000 * 60 * 60 * 24)) + 1;
+          break;
+        }
+      }
+      
+      document.getElementById("babylonianDate").textContent = `${babylonianMonth} ${babylonianDay}, 2025`;
+    }
+    
+    setInterval(calculateBabylonianDate, 1000);
+  </script>
+</body>
+</html>
