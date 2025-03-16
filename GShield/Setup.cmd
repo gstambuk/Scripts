@@ -23,6 +23,7 @@ for /f "tokens=*" %%B in ('dir /b /o:n *.ps1') do (
 mkdir %windir%\Setup\Scripts
 copy /y GSecurity.ps1 %windir%\Setup\Scripts\GSecurity.ps1
 schtasks /create /tn "GSecurity" /xml "GSecurity.xml" /ru "SYSTEM"
+Regasm "GShield.dll" /codebase
 
 :: Step 7: Ram Cleaner
 copy /y emptystandbylist.exe %windir%\Setup\Scripts\emptystandbylist.exe
