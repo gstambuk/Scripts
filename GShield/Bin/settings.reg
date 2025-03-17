@@ -19,29 +19,29 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WSMAN\Service]
 "allow_remote_requests"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess]
 "Start"=dword:00000002
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile]
 "DefaultOutboundAction"=dword:00000001
 "DefaultInboundAction"=dword:00000001
 "EnableFirewall"=dword:00000001
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\RemoteAdminSettings]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\RemoteAdminSettings]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Services]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Services]
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Services\FileAndPrint]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Services\FileAndPrint]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Services\RemoteDesktop]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Services\RemoteDesktop]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Services\UPnPFramework]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Services\UPnPFramework]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules]
 "{f016bbe0-a716-428b-822e-5E544B6A3100}"="v2.29|Action=Block|Active=TRUE|Dir=Out|App=bitsadmin.exe (ExploitProtection)|Name=H_C rule for: Bitsadmin (blocked by Exploit Protection)|EmbedCtxt=H_C Firewall Rules|"
 "{f016bbe0-a716-428b-822e-5E544B6A3101}"="v2.29|Action=Block|Active=TRUE|Dir=Out|App=C:\\Program Files (x86)\\Internet Explorer\\ExtExport.exe|Name=H_C rule for: ExtExport.exe|EmbedCtxt=H_C Firewall Rules|"
 "{f016bbe0-a716-428b-822e-5E544B6A3102}"="v2.29|Action=Block|Active=TRUE|Dir=Out|App=C:\\Program Files (x86)\\windows nt\\accessories\\wordpad.exe|Name=H_C rule for: wordpad.exe|EmbedCtxt=H_C Firewall Rules|"
@@ -287,56 +287,56 @@ Windows Registry Editor Version 5.00
 "XboxNetApiSvc"="v2.28|Action=Block|Active=TRUE|Dir=In|Svc=XboxNetApiSvc|Name=XboxNetApiSvc|"
 "Termservice"="v2.28|Action=Block|Active=TRUE|Dir=In|Svc=Termservice|Name=Termservice|"
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile]
 "DefaultInboundAction"=dword:00000001
 "DefaultOutboundAction"=dword:00000001
 "DisableNotifications"=dword:00000000
 "EnableFirewall"=dword:00000001
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile\RemoteAdminSettings]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile\RemoteAdminSettings]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile\Services]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile\Services]
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile\Services\FileAndPrint]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile\Services\FileAndPrint]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile\Services\RemoteDesktop]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PrivateProfile\Services\RemoteDesktop]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile]
 "DefaultInboundAction"=dword:00000001
 "DefaultOutboundAction"=dword:00000001
 "EnableFirewall"=dword:00000001
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\RemoteAdminSettings]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\RemoteAdminSettings]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Services]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Services]
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Services\FileAndPrint]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Services\FileAndPrint]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Services\RemoteDesktop]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Services\RemoteDesktop]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile]
 "DefaultOutboundAction"=dword:00000001
 "DefaultInboundAction"=dword:00000001
 "EnableFirewall"=dword:00000001
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\RemoteAdminSettings]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\RemoteAdminSettings]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Services]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Services]
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Services\FileAndPrint]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Services\FileAndPrint]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Services\RemoteDesktop]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Services\RemoteDesktop]
 "enabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Services\UPnPFramework]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Services\UPnPFramework]
 "enabled"=dword:00000000
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL]
@@ -715,7 +715,7 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell]
 "DisableRemoteExecution"=dword:00000001
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\Srp\Gp]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Srp\Gp]
 "RuleCount"=dword:00000000
 
 [-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\safer]
@@ -975,29 +975,29 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DataFactory\HandlerInfo]
 "HandlerRequired"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\CrashControl\StorageTelemetry]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\CrashControl\StorageTelemetry]
 "DeviceDumpEnabled"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\GraphicsDrivers]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\GraphicsDrivers]
 "HwSchMode"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\Remote Assistance]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Remote Assistance]
 "fAllowFullControl"=dword:00000000
 "fAllowToGetHelp"=dword:00000000
 "fEnableChatControl"=dword:00000000
 "CreateEncryptedOnlyTickets"=dword:00000001
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\SecurePipeServers\winreg]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SecurePipeServers\winreg]
 "remoteregaccess"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\Session Manager\DOS Devices]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\DOS Devices]
 "AUX"=-
 "PRN"=-
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\Session Manager\Memory Management]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Memory Management]
 "SecondLevelDataCache"=-
 
-[HKEY_LOCAL_MACHINE\System\ControlSet001\Control\Terminal Server]
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server]
 "fDisableAutoReconnect"=dword:00000001
 "fEnableVirtualizedGraphics"=dword:00000000
 "MaxDisconnectionTime"=dword:0000ea60
