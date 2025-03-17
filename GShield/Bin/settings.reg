@@ -1052,6 +1052,5 @@ Windows Registry Editor Version 5.00
 "ConsentPromptBehaviorEnhancedAdmin"=dword:00000001
 "ConsentPromptBehaviorAdmin"=dword:00000001
 "ConsentPromptBehaviorUser"=dword:00000000
-"DisableRegistryTools"=dword:00000001
 "EnableLinkedConnections"=dword:00000000
 "LocalAccountTokenFilterPolicy"=dword:00000000
