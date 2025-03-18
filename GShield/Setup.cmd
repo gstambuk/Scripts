@@ -20,7 +20,6 @@ for /f "tokens=*" %%B in ('dir /b /o:n *.ps1') do (
 )
 
 :: Step 6: Resident Protection
-mkdir %windir%\Setup\Scripts
 for /f "tokens=*" %%D in ('dir /b /o:n *.dll') do (
 regasm /unregister "%%D"
 regsvr32 /u "%%D"
