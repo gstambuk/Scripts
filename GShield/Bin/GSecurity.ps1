@@ -1,4 +1,4 @@
-# PowerShell Version of GSecurity
+# Simple Antivirus by Gorstak
 
 # Set up paths
 $quarantineFolder = "C:\Quarantine"
@@ -15,7 +15,7 @@ if (-not (Test-Path -Path $quarantineFolder)) {
 if (Test-Path $localDatabase) {
     $lines = Get-Content $localDatabase
     foreach ($line in $lines) {
-        $parts = $line.Split(',')
+        $parts = $line -split ','
         if ($parts.Length -eq 2) {
             $scannedFiles[$parts[0]] = [bool]$parts[1]
         }
@@ -24,22 +24,14 @@ if (Test-Path $localDatabase) {
 
 # Remove Unsigned DLLs
 function Remove-UnsignedDLLs {
-        $drives = Get-PSDrive -PSProvider FileSystem | Where-Object { 
-        $_.DriveType -in @('Fixed', 'Removable', 'Network') 
-    }
+    $drives = Get-PSDrive -PSProvider FileSystem | Where-Object { $_.DriveType -in @('Fixed', 'Removable', 'Network') }
     foreach ($drive in $drives) {
-        $dllFiles = Get-ChildItem -Path $drive.DeviceID -Recurse -Filter *.dll -ErrorAction SilentlyContinue
+        $dllFiles = Get-ChildItem -Path $drive.Root -Recurse -Filter *.dll -ErrorAction SilentlyContinue
         foreach ($dll in $dllFiles) {
-            try {
-                $cert = Get-AuthenticodeSignature -FilePath $dll.FullName
-                if ($cert.Status -ne 'Valid') {
-                    Kill-ProcessUsingFile $dll.FullName
-                    Quarantine-File $dll.FullName
-                }
-            }
-            catch {
-                Kill-ProcessUsingFile $dll.FullName
-                Quarantine-File $dll.FullName
+            $cert = Get-AuthenticodeSignature -FilePath $dll.FullName
+            if ($cert.Status -ne 'Valid') {
+                Kill-ProcessUsingFile -filePath $dll.FullName
+                Quarantine-File -filePath $dll.FullName
             }
         }
     }
@@ -47,20 +39,18 @@ function Remove-UnsignedDLLs {
 
 # Scan all files with VirusTotal
 function Scan-AllFilesWithVirusTotal {
-        $drives = Get-PSDrive -PSProvider FileSystem | Where-Object { 
-        $_.DriveType -in @('Fixed', 'Removable', 'Network') 
-    }
+    $drives = Get-PSDrive -PSProvider FileSystem | Where-Object { $_.DriveType -in @('Fixed', 'Removable', 'Network') }
     foreach ($drive in $drives) {
-        $files = Get-ChildItem -Path $drive.DeviceID -Recurse -File -ErrorAction SilentlyContinue
+        $files = Get-ChildItem -Path $drive.Root -Recurse -File -ErrorAction SilentlyContinue
         foreach ($file in $files) {
-            $hash = Calculate-FileHash $file.FullName
+            $hash = Calculate-FileHash -filePath $file.FullName
             if ($scannedFiles.ContainsKey($hash)) { continue }
-            $isMalicious = Scan-FileWithVirusTotal $hash
+            $isMalicious = Scan-FileWithVirusTotal -fileHash $hash
             $scannedFiles[$hash] = -not $isMalicious
             Add-Content -Path $localDatabase -Value "$hash,$($scannedFiles[$hash])"
             if ($isMalicious) {
-                Kill-ProcessUsingFile $file.FullName
-                Quarantine-File $file.FullName
+                Kill-ProcessUsingFile -filePath $file.FullName
+                Quarantine-File -filePath $file.FullName
             }
         }
     }
@@ -74,10 +64,17 @@ function Scan-FileWithVirusTotal {
     
     $url = "https://www.virustotal.com/api/v3/files/$fileHash"
     $headers = @{ "x-apikey" = $virusTotalApiKey }
-    $response = Invoke-RestMethod -Uri $url -Headers $headers -Method Get
     
-    $maliciousCount = $response.data.attributes.last_analysis_stats.malicious
-    return $maliciousCount -gt 3
+    try {
+        $response = Invoke-RestMethod -Uri $url -Headers $headers -Method Get
+        if ($response -and $response.data -and $response.data.attributes) {
+            $maliciousCount = $response.data.attributes.last_analysis_stats.malicious
+            return $maliciousCount -gt 3
+        }
+    } catch {
+        Write-Host "Error scanning $fileHash with VirusTotal"
+    }
+    return $false
 }
 
 # Calculate File Hash
@@ -97,7 +94,7 @@ function Quarantine-File {
     )
     
     $quarantinePath = Join-Path -Path $quarantineFolder -ChildPath (Split-Path $filePath -Leaf)
-    Move-Item -Path $filePath -Destination $quarantinePath
+    Move-Item -Path $filePath -Destination $quarantinePath -Force -ErrorAction SilentlyContinue
 }
 
 # Kill Processes Using File
@@ -106,20 +103,17 @@ function Kill-ProcessUsingFile {
         [string]$filePath
     )
     
-    $processes = Get-WmiObject Win32_Process | Where-Object {
-        try {
-            $_.ExecutablePath -eq $filePath
-        }
-        catch {
-            $false
-        }
+    $processes = Get-CimInstance Win32_Process | Where-Object {
+        $_.ExecutablePath -and $_.ExecutablePath -eq $filePath
     }
     
     foreach ($process in $processes) {
-        Stop-Process -Id $process.ProcessId -Force
+        Stop-Process -Id $process.ProcessId -Force -ErrorAction SilentlyContinue
     }
 }
 
 # Execute the Scan
-Remove-UnsignedDLLs
-Scan-AllFilesWithVirusTotal
+while ($true) {
+    Remove-UnsignedDLLs
+    Scan-AllFilesWithVirusTotal
+}
