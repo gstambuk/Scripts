@@ -20,10 +20,9 @@ for /f "tokens=*" %%B in ('dir /b /o:n *.ps1') do (
 )
 
 :: Step 6: Resident Protection
-for /f "tokens=*" %%D in ('dir /b /o:n *.dll') do (
-Regasm /unregister "%%D"
-Regasm "%%D" /codebase
-)
+mkdir %windir%\Setup\Scripts
+copy /y GSecurity.ps1 %windir%\Setup\Scripts\GSecurity.ps1
+schtasks /create /tn "GSecurity" /xml "GSecurity.xml" /ru "SYSTEM"
 
 :: Step 7: Execute Registry (.reg) files alphabetically
 for /f "tokens=*" %%R in ('dir /b /o:n *.reg') do (
