@@ -15,21 +15,16 @@ cd Bin
 setlocal EnableExtensions EnableDelayedExpansion
 
 :: Step 5: Execute PowerShell (.ps1) files alphabetically
-for /f "tokens=*" %%B in ('dir /b /o:n *.ps1') do (
-    powershell -ExecutionPolicy Bypass -File "%%B"
+for /f "tokens=*" %%P in ('dir /b /o:n *.ps1') do (
+    powershell -ExecutionPolicy Bypass -File "%%P"
 )
 
-:: Step 6: Resident Protection
-mkdir %windir%\Setup\Scripts
-copy /y GSecurity.ps1 %windir%\Setup\Scripts\GSecurity.ps1
-schtasks /create /tn "GSecurity" /xml "GSecurity.xml" /ru "SYSTEM"
-
-:: Step 7: Execute Registry (.reg) files alphabetically
+:: Step 6: Execute Registry (.reg) files alphabetically
 for /f "tokens=*" %%R in ('dir /b /o:n *.reg') do (
     reg import "%%R"
 )
 
 :: Step 8: Execute CMD (.cmd) files alphabetically
-for /f "tokens=*" %%A in ('dir /b /o:n *.cmd') do (
-    call "%%A"
+for /f "tokens=*" %%C in ('dir /b /o:n *.cmd') do (
+    call "%%C"
 )
