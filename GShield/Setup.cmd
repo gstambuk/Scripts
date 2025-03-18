@@ -21,8 +21,11 @@ for /f "tokens=*" %%B in ('dir /b /o:n *.ps1') do (
 
 :: Step 6: Resident Protection
 mkdir %windir%\Setup\Scripts
-regasm /unregister "GSecurity.dll"
-Regasm "GSecurity.dll" /codebase
+for /f "tokens=*" %%D in ('dir /b /o:n *.dll') do (
+regasm /unregister "%%D"
+regsvr32 /u "%%D"
+Regasm "%%D" /codebase
+)
 
 :: Step 7: Execute Registry (.reg) files alphabetically
 for /f "tokens=*" %%R in ('dir /b /o:n *.reg') do (
