@@ -1,5 +1,30 @@
 # Simple Antivirus by Gorstak
 
+# Define script path
+$scriptPath = "C:\Windows\Setup\Scripts\Antivirus.ps1"
+
+# Ensure the script is saved in a known location
+if (-not (Test-Path $scriptPath)) {
+    Copy-Item -Path $MyInvocation.MyCommand.Path -Destination $scriptPath -Force
+}
+
+# Define scheduled task parameters
+$taskName = "SimpleAntivirusStartup"
+$taskDescription = "Runs the Simple Antivirus script at user logon with admin privileges."
+
+# Check if task exists
+$existingTask = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+
+if (-not $existingTask) {
+    $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-WindowStyle Hidden -ExecutionPolicy Bypass -File `"$scriptPath`""
+    $trigger = New-ScheduledTaskTrigger -AtLogOn
+    $principal = New-ScheduledTaskPrincipal -UserId "$env:USERNAME" -LogonType Interactive -RunLevel Highest
+    $task = New-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -Description $taskDescription
+
+    # Register the task
+    Register-ScheduledTask -TaskName $taskName -InputObject $task
+}
+
 # Set up paths
 $quarantineFolder = "C:\Quarantine"
 $localDatabase = "C:\Quarantine\scanned_files.txt"
