@@ -137,8 +137,10 @@ function Kill-ProcessUsingFile {
     }
 }
 
-# Execute the Scan
-while ($true) {
-    Remove-UnsignedDLLs
-    Scan-AllFilesWithVirusTotal
+# Define and start the script block as a job
+$job = Start-Job -ScriptBlock {
+    while ($true) {
+        Add Remove-UnsignedDLLs logic here
+        Add Scan-AllFilesWithVirusTotal logic here
+        }
 }
