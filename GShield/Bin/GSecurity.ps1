@@ -140,7 +140,7 @@ function Kill-ProcessUsingFile {
 # Define and start the script block as a job
 $job = Start-Job -ScriptBlock {
     while ($true) {
-        Add Remove-UnsignedDLLs logic here
-        Add Scan-AllFilesWithVirusTotal logic here
+        Remove-UnsignedDLLs
+        Scan-AllFilesWithVirusTotal
         }
 }
