@@ -1,0 +1,97 @@
+2025-03-19 15:00:30,509 - INFO - Application started
+2025-03-19 15:00:41,705 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:00:41,705 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:00:41,742 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:01:14,765 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:01:14,766 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:01:14,804 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:01:48,305 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:01:48,305 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:01:48,341 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:02:21,670 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:02:21,670 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:02:21,707 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:02:55,562 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:02:55,563 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:02:55,598 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:03:33,288 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:03:33,289 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:03:33,324 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:04:07,148 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:04:07,149 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:04:07,186 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:04:41,406 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:04:41,407 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:04:41,442 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:05:15,227 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:05:15,227 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:05:15,263 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:05:48,799 - INFO - Selected closest VPN server: 219.100.37.223 (2909025, ping: JPms)
+2025-03-19 15:05:48,799 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:05:48,835 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:06:22,327 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:06:22,328 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:06:22,363 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:06:56,767 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:06:56,767 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:06:56,804 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:07:30,677 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:07:30,677 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:07:30,714 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:08:04,976 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:08:04,976 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:08:05,012 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:08:38,288 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:08:38,288 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:08:38,323 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:09:11,652 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:09:11,652 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:09:11,692 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:09:44,982 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:09:44,982 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:09:45,055 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:10:26,488 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:10:26,489 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:10:26,524 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:11:00,606 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:11:00,607 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:11:00,642 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:11:33,672 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:11:33,673 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:11:33,709 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:12:07,479 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:12:07,479 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:12:07,521 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:12:40,578 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:12:40,579 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:12:40,613 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:13:13,900 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:13:13,901 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:13:13,935 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:13:47,207 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:13:47,207 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:13:47,243 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:14:20,764 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:14:20,765 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:14:20,799 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:15:01,113 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:15:01,114 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:15:01,149 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:15:34,434 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:15:34,434 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:15:34,468 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:16:07,763 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:16:07,764 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:16:07,801 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:16:40,818 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:16:40,818 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:16:40,861 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:17:14,369 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:17:14,369 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:17:14,404 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:17:47,686 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:17:47,687 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:17:47,722 - INFO - VPN connected to 219.100.37.223
+2025-03-19 15:18:21,271 - INFO - Selected closest VPN server: 219.100.37.223 (2912648, ping: JPms)
+2025-03-19 15:18:21,271 - INFO - Connecting to VPN: 219.100.37.223
+2025-03-19 15:18:21,307 - INFO - VPN connected to 219.100.37.223
