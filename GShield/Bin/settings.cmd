@@ -1,5 +1,11 @@
 @echo off
 
+:: Reset group policy
+rd /S /Q "%WinDir%\System32\GroupPolicyUsers"
+rd /S /Q "%WinDir%\System32\GroupPolicy"
+rd /S /Q "%WinDir%\SysWOW64\GroupPolicyUsers"
+rd /S /Q "%WinDir%\SysWOW64\GroupPolicy"
+
 :: Wmic
 DISM /Online /Add-Capability /CapabilityName:WMIC~~~~
 
