@@ -32,7 +32,7 @@ namespace GShield
         private static readonly TimeSpan _vpnTimeLimit = TimeSpan.FromHours(24); // Switch after 24 hours
         private static int _vpnFailureCount = 0;
         private static readonly int _maxFailures = 3;
-        private static string logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "GShield.log");
+        private static string logFilePath = @"C:\logs\GShield.log"; // Updated to C:\logs
         private static string quarantineFolder = @"C:\Quarantine";
         private static string localDatabase = @"C:\Quarantine\scanned_files.txt";
         private static string virusTotalApiKey = "24ebf7780f869017f4bf596d11d6d38dc6dd37ec5a52494b3f0c65f3bdd2c929";
@@ -55,9 +55,9 @@ namespace GShield
             { "UCBrowser", new[] { Path.Combine(Environment.GetEnvironmentVariable("LOCALAPPDATA") ?? "", "UCBrowser\\User Data\\Default\\Network\\Cookies") } },
             { "Tor", new[] { Path.Combine(Environment.GetEnvironmentVariable("APPDATA") ?? "", "Tor Browser\\Browser\\TorBrowser\\Data\\Browser\\profile.default\\cookies.sqlite") } }
         };
-        private static string cookieLogFile = @"C:\logs\cookie_cleanup.log";
-        private static int intervalMinutes = 60;
-        private static string pdqLogPath = @"C:\Logs";
+        private static string cookieLogFile = @"C:\logs\cookie_cleanup.log"; // Updated to C:\logs
+        private static int intervalMinutes = 1; // Reduced for testing; change back to 60 later
+        private static string pdqLogPath = @"C:\logs"; // Updated to C:\logs
         private static string pdqLogFile = $"{Environment.MachineName}_system_cleanup.log";
         private static string forceCloseProcesses = "yes";
         private static string forceCloseProcessesExitCode = "1618";
@@ -69,7 +69,7 @@ namespace GShield
         private static string osVersion = "OTHER";
         private static string winVer = "Unknown";
         private static List<FileSystemWatcher> _watchers = new List<FileSystemWatcher>();
-        private static string connectionLogFile = @"C:\logs\connection_attempts.log";
+        private static string connectionLogFile = @"C:\logs\connection_attempts.log"; // Updated to C:\logs
 
         [STAThread]
         static async Task Main()
@@ -87,24 +87,74 @@ namespace GShield
             _cts = new CancellationTokenSource();
             InitializeDirectories();
 
-            // Apply registry settings at startup
+            Log("Applying registry settings...");
             ApplyRegistrySettings();
 
-            // Run one-time functions at startup
+            Log("Starting one-time functions...");
             await Task.WhenAll(
                 HardenSystemSettings(),
                 CorruptTelemetry(),
                 OptimizePerformance(),
                 CleanSystem()
             );
+            Log("One-time functions completed.");
 
-            // Start persistent tasks
-            await SetupFileSystemWatchers();
-            await RunInitialScan();
-            Task.Run(() => RunCookieCleanupLoop(_cts.Token));
-            Task.Run(() => MonitorConnections(_cts.Token));
-            Task.Run(() => ManageVpnLoop(_cts.Token));
+            try
+            {
+                Log("Setting up file system watchers...");
+                await SetupFileSystemWatchers();
+                Log("Running initial file scan...");
+                await RunInitialScan();
+                Log("File system monitoring initialized.");
+            }
+            catch (Exception ex)
+            {
+                Log($"File system monitoring setup failed: {ex.Message}");
+            }
 
+            try
+            {
+                Log("Starting cookie cleanup loop...");
+                Task.Run(async () =>
+                {
+                    try { await RunCookieCleanupLoop(_cts.Token); }
+                    catch (Exception ex) { Log($"Cookie cleanup loop failed: {ex.Message}"); }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log($"Failed to start cookie cleanup: {ex.Message}");
+            }
+
+            try
+            {
+                Log("Starting connection monitoring...");
+                Task.Run(async () =>
+                {
+                    try { await MonitorConnections(_cts.Token); }
+                    catch (Exception ex) { Log($"Connection monitoring failed: {ex.Message}"); }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log($"Failed to start connection monitoring: {ex.Message}");
+            }
+
+            try
+            {
+                Log("Starting VPN management loop...");
+                Task.Run(async () =>
+                {
+                    try { await ManageVpnLoop(_cts.Token); }
+                    catch (Exception ex) { Log($"VPN management loop failed: {ex.Message}"); }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log($"Failed to start VPN management: {ex.Message}");
+            }
+
+            Log("Entering application loop...");
             Application.Run();
         }
 
@@ -669,12 +719,12 @@ namespace GShield
                     DeleteDirectory(Path.Combine(Environment.GetEnvironmentVariable("WinDir") ?? "", "SysWOW64\\GroupPolicy"));
                     RunCommand("DISM", "/Online /Add-Capability /CapabilityName:WMIC~~~~");
                     RunPowerShellCommand("Uninstall-ProvisioningPackage -AllInstalledPackages");
-                    ModifyRegistry("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DriverInstall\\Restrictions", "AllowUserDeviceClasses", "0");
-                    ModifyRegistry("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", "ConsentPromptBehaviorAdmin", "2");
+                    ModifyRegistry("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DriverInstall\\Restrictions", "AllowUserDeviceClasses", 0, RegistryValueKind.DWord);
+                    ModifyRegistry("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", "ConsentPromptBehaviorAdmin", 2, RegistryValueKind.DWord);
                     RunCommand("net", "user \"UserName\" /delete");
                     ManageService("SSDPSRV", "stop", "disabled");
                     ManageService("upnphost", "stop", "disabled");
-                    SetPermissions(@"C:\path\to\folder");
+                    SetPermissions(quarantineFolder); // Updated to use quarantineFolder
                     Log("System hardening completed.");
                 });
             }
@@ -769,26 +819,31 @@ namespace GShield
         #region Utility Methods
         static void InitializeDirectories()
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(logFilePath) ?? "");
-            Directory.CreateDirectory(quarantineFolder);
-            Directory.CreateDirectory(Path.GetDirectoryName(cookieLogFile) ?? "");
-            if (File.Exists(localDatabase))
+            try
             {
-                var lines = File.ReadLines(localDatabase);
-                foreach (var line in lines)
+                Directory.CreateDirectory(Path.GetDirectoryName(logFilePath) ?? ""); Log("Created GShield log directory.");
+                Directory.CreateDirectory(quarantineFolder); Log("Created quarantine directory.");
+                Directory.CreateDirectory(Path.GetDirectoryName(cookieLogFile) ?? ""); Log("Created cookie log directory.");
+                if (File.Exists(localDatabase))
                 {
-                    var parts = line.Split(',');
-                    if (parts.Length == 2)
+                    var lines = File.ReadLines(localDatabase);
+                    foreach (var line in lines)
                     {
-                        scannedFiles[parts[0]] = bool.Parse(parts[1]);
+                        var parts = line.Split(',');
+                        if (parts.Length == 2) scannedFiles[parts[0]] = bool.Parse(parts[1]);
                     }
+                    Log("Loaded scanned files database.");
                 }
+            }
+            catch (Exception ex)
+            {
+                Log($"Failed to initialize directories: {ex.Message}");
             }
         }
 
         static bool IsRunningAsAdministrator() => new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
 
-        static void Log(string message) => File.AppendAllText(logFilePath, $"[{DateTime.Now}] {message}{Environment.NewLine}");
+        static void Log(string message) => File.AppendAllText(logFilePath, $"[{DateTime.Now:ddd dd MMM yyyy hh:mm:ss tt}] {message}{Environment.NewLine}");
 
         static bool ExecuteCommand(string command, string arguments)
         {
@@ -833,7 +888,7 @@ namespace GShield
             }
         }
 
-        #pragma warning disable SYSLIB0057
+#pragma warning disable SYSLIB0057
         static string GetAuthenticodeSignature(string filePath)
         {
             try
@@ -846,7 +901,7 @@ namespace GShield
                 return "Invalid";
             }
         }
-        #pragma warning restore SYSLIB0057
+#pragma warning restore SYSLIB0057
 
         static async Task<bool> ScanFileWithVirusTotal(string fileHash)
         {
@@ -916,9 +971,7 @@ namespace GShield
         {
             try
             {
-                // Extract embedded registry file
                 string tempRegPath = Path.Combine(Path.GetTempPath(), "GShield_settings.reg");
-                
                 using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("GShield.settings.reg"))
                 {
                     if (stream == null)
@@ -926,14 +979,11 @@ namespace GShield
                         Log("Failed to find embedded settings.reg resource");
                         return;
                     }
-
                     using (var fileStream = new FileStream(tempRegPath, FileMode.Create, FileAccess.Write))
                     {
                         stream.CopyTo(fileStream);
                     }
                 }
-
-                // Execute registry file
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
                     FileName = "regedit.exe",
@@ -941,13 +991,9 @@ namespace GShield
                     UseShellExecute = false,
                     CreateNoWindow = true
                 };
-
                 Process? process = Process.Start(psi);
                 process?.WaitForExit();
-
-                // Clean up temporary file
                 File.Delete(tempRegPath);
-                
                 Log("Successfully applied registry settings");
             }
             catch (Exception ex)
@@ -1184,13 +1230,13 @@ SeServiceLogonRight=
             }
         }
 
-        static void ModifyRegistry(string registryKey, string valueName, string valueData)
+        static void ModifyRegistry(string registryKey, string valueName, object valueData, RegistryValueKind valueKind = RegistryValueKind.String)
         {
             try
             {
                 using (var key = Registry.LocalMachine.CreateSubKey(registryKey))
                 {
-                    key?.SetValue(valueName, valueData);
+                    key?.SetValue(valueName, valueData, valueKind);
                     Log($"Modified registry: {registryKey}\\{valueName} = {valueData}");
                 }
             }
@@ -1226,7 +1272,7 @@ SeServiceLogonRight=
             }
         }
 
-        static void SetPermissions(string directoryPath = @"C:\Quarantine")
+        static void SetPermissions(string directoryPath)
         {
             try
             {
